@@ -1,0 +1,221 @@
+.content {
+  padding: 40px;
+  background: #fff;
+  border-radius: 8px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* TITULOS */
+.header h2 {
+  font-size: 1.8em;
+  margin-bottom: 30px;
+}
+
+.section h3 {
+  font-size: 1.2em;
+  margin-bottom: 15px;
+}
+
+/* INPUT */
+.input-select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* CARDS DE SERVICIO */
+.cards-servicios {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 20px;
+}
+
+.card-servicio {
+  background: #fdf6d3;
+  border: 2px solid #ffd700;
+  padding: 15px;
+  text-align: center;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.card-servicio:hover {
+  transform: scale(1.05);
+}
+
+.card-servicio.seleccionado {
+  background: #fff8b0;
+  border-color: #333;
+}
+
+/* HORARIOS */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 20px;
+}
+
+.horario-card {
+  background: #fdf6d3;
+  border: 2px solid #ffd700;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.horario-card:hover {
+  transform: translateY(-3px);
+}
+
+.horario-card.seleccionado {
+  background: #fff8b0;
+  border-color: #333;
+}
+
+/* TEXTOS */
+.titulo {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.precio {
+  color: #555;
+  font-size: 0.9em;
+}
+
+/* BOTONES */
+.botones-flotantes {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.botones-flotantes button {
+  background: #ffd700;
+  border: none;
+  padding: 12px 22px;
+  font-size: 1em;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.botones-flotantes button:hover {
+  background: #ffec80;
+}
+
+.resumen-cita {
+  background-color: #fdf9ef;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.resumen-detalle p {
+  margin: 8px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.resumen-confirmacion {
+  background-color: #fff8e1;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 30px;
+}
+
+.resumen-detalle p {
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+.botones-resumen {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.btn-confirmar, .btn-cancelar {
+  padding: 10px 20px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-confirmar {
+  background-color: #c1a57b;
+  color: white;
+}
+
+.btn-cancelar {
+  background-color: #eee;
+  color: #333;
+}
+
+
+
+
+/* Fondo difuminado */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* fondo oscuro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Contenido del modal */
+.modal-content {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+/* Detalles del resumen */
+.resumen-detalle p {
+  margin: 10px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Botones */
+.modal-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.btn-confirmar, .btn-cancelar {
+  padding: 10px 20px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-confirmar {
+  background-color: #c1a57b;
+  color: white;
+}
+
+.btn-cancelar {
+  background-color: #eee;
+  color: #333;
+}

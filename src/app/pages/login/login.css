@@ -1,0 +1,229 @@
+
+
+
+/* Estructura general */
+
+.container {
+
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 80%;
+}
+.col25 { max-width: 25%; flex-basis: 25%; }
+.col33 { max-width: 33.33%; flex-basis: 33.33%; }
+.col40 { max-width: 40%; flex-basis: 40%; }
+.col50 { max-width: 50%; flex-basis: 50%; }
+.col60 { max-width: 60%; flex-basis: 60%; }
+.col66 { max-width: 66.67%; flex-basis: 66.67%; }
+.col75 { max-width: 75%; flex-basis: 75%; }
+.col100 { max-width: 100%; flex-basis: 100%; }
+
+.login-container {
+  display: flex;
+  height: 100vh;
+  font-family: 'Arial', sans-serif;
+  background-color: #fdf9ef;
+}
+
+
+/* Lado izquierdo */
+.left-section {
+  flex: 1;
+  background-color: #fdf9ef;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid #eee;
+}
+
+.left-section .logo {
+  width: 350px;
+  margin-bottom: 50px;
+}
+
+.left-section h1 {
+  font-size: 48px;
+  color: #8b5a2b;
+  margin: 0;
+}
+
+.left-section p {
+  color: #648b4f;
+  font-size: 18px;
+}
+
+/* Lado derecho */
+.right-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fffefc;
+}
+
+.login-box {
+  width: 350px;
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.mini-logo {
+  width: 160px;
+  display: block;
+  margin: 0 auto 10px;
+}
+
+h2 {
+  text-align: center;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* Inputs */
+label {
+  font-weight: bold;
+  color: #444;
+  font-size: 14px;
+}
+
+.input-group {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.input-group select,
+.input-group input,
+.input-password input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.input-password {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}
+
+/* Otros elementos */
+.forgot {
+  display: block;
+  text-align: right;
+  color: #648b4f;
+  font-size: 13px;
+  margin: 5px 0 15px;
+}
+
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+
+.btn-login {
+  width: 100%;
+  background-color: #9c9c7d;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.btn-login:hover {
+  background-color: #8b8b6a;
+}
+
+.signup-text {
+  text-align: center;
+  margin-top: 15px;
+  color: #333;
+}
+
+.signup-link {
+  color: #0056d2;
+  text-decoration: none;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+}
+
+/* Estilos para el botón principal (Guardar) */
+.btn-primary {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+/* Estilos para el botón secundario (Cancelar) */
+.btn-secondary {
+  background-color: #ccc;
+  color: #222;
+}
+
+.btn-secondary:hover {
+  opacity: 0.9;
+}
+
+/* Aplicamos estilos comunes (padding, border-radius, width) a ambos, usando .btn-login para mantener la coherencia */
+.btn-login, .btn-secondary {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  border: none;
+  font-weight: bold; /* Para que resalte como el original */
+}
+
+/* Forzamos el margen entre los botones si es necesario */
+button + button {
+    margin-top: 10px;
+}
+.login-container {
+  display: flex;
+  flex-direction: row; /* Asegura que sea horizontal */
+  height: 100vh;
+  font-family: 'Arial', sans-serif;
+  background-color: #fdf9ef;
+}
+
+.left-section, .right-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column; /* Apilar en pantallas pequeñas */
+    height: auto;
+    padding: 20px;
+  }
+
+  .right-section .logo {
+    width: 200px;
+  }
+}

@@ -1,0 +1,52 @@
+<div class="content">
+<div class="header">
+ <div class="header">
+  <h2>Bienvenida (o) :  {{ nombre }}</h2>
+</div>
+  <button class="user-btn" (click)="abrirPerfil()">
+     {{ usuarioDisplay }}
+  </button>
+</div>
+
+
+
+  <div *ngIf="cargando" class="spinner-container">
+  <div class="spinner"></div>
+  <p>Cargando servicios...</p>
+</div>
+
+  <div *ngIf="!cargando">
+    <!-- Servicios -->
+    <div class="section">
+      <h3>Nuestros Servicios</h3>
+<div class="cards">
+  <div
+    class="card large"
+    *ngFor="let servicio of recomendaciones"
+    (click)="seleccionarRecomendado(servicio)"
+  >
+    <img [src]="servicio.imagen_url" class="card-img" alt="imagen servicio" />
+    <div class="card-info">
+      <p class="titulo">{{ servicio.nombre }}</p>
+      <p class="precio">S/ {{ servicio.precio }}</p>
+    </div>
+  </div>
+</div>
+
+    </div>
+
+    <!-- Última cita -->
+    <div class="section">
+      <h3>Mi última cita</h3>
+      <div *ngIf="ultimaCita; else sinCita" class="ultima-cita-card">
+        <p><b>Servicio:</b> {{ ultimaCita.servicio_id?.nombre }}</p>
+        <p><b>Fecha:</b> {{ ultimaCita.fecha_reserva | date: 'dd/MM/yyyy' }}</p>
+        <p><b>Hora:</b> {{ ultimaCita.hora_reserva }}</p>
+        <p><b>Notas:</b> {{ ultimaCita.notas || 'Sin notas' }}</p>
+      </div>
+      <ng-template #sinCita>
+        <p class="sin-cita">Aún no tienes una cita registrada 🕓</p>
+      </ng-template>
+    </div>
+  </div>
+</div>

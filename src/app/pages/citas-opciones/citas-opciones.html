@@ -1,0 +1,25 @@
+<div class="dashboard-container">
+
+
+  <!-- Lado Derecho -->
+  <div class="col col50 right-section">
+    <div class="reservar-content">
+      <h2>Reservar Cita</h2>
+      <p>Elige una opción para continuar:</p>
+
+      <div class="opciones">
+        <div class="card" (click)="irCitasPorServicio()">
+          <img src="LogoSPA.png" alt="Servicio" />
+          <h3>Buscar por Servicio</h3>
+          <p>Selecciona el servicio que deseas y reserva tu cita.</p>
+        </div>
+
+        <div class="card" (click)="irCitasPorEspecialista()">
+          <img src="LogoSPA.png" alt="Especialista" />
+          <h3>Buscar por Especialista</h3>
+          <p>Elige tu especialista de confianza y agenda una cita.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

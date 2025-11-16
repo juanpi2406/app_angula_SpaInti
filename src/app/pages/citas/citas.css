@@ -1,0 +1,164 @@
+/* Diseño principal */
+.container {
+
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 80%;
+}
+.col25 { max-width: 25%; flex-basis: 25%; }
+.col33 { max-width: 33.33%; flex-basis: 33.33%; }
+.col40 { max-width: 40%; flex-basis: 40%; }
+.col50 { max-width: 50%; flex-basis: 50%; }
+.col60 { max-width: 60%; flex-basis: 60%; }
+.col66 { max-width: 66.67%; flex-basis: 66.67%; }
+.col75 { max-width: 75%; flex-basis: 75%; }
+.col100 { max-width: 100%; flex-basis: 100%; }
+
+.login-container {
+  display: flex;
+  height: 100vh;
+  font-family: 'Arial', sans-serif;
+  background-color: #fdf9ef;
+}
+
+/* Lado izquierdo */
+.left-section {
+  flex: 1;
+  background-color: #fdf9ef;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid #eee;
+}
+
+.left-section .logo {
+  width: 350px;
+  margin-bottom: 50px;
+}
+/* Lado derecho */
+.right-section {
+  background-color: #fffefc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
+  width: 350px;
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+h2 {
+  text-align: center;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* Inputs */
+label {
+  font-weight: bold;
+  color: #444;
+  font-size: 14px;
+}
+
+.input-group {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.input-group select,
+.input-group input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* Botón */
+.btn-login {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  border: none;
+}
+
+.btn-primary {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+/* Responsive para móvil */
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+  }
+
+  .left-section {
+    border-right: none;
+  }
+}
+/* Layout principal */
+.login-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh; /* MUY IMPORTANTE */
+  width: 100%;
+  background: #fdf9ef;
+}
+
+/* Columnas */
+.left-section, .right-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Lado izquierdo */
+.left-section {
+  border-right: 1px solid #eee;
+}
+
+.left-section .logo {
+  width: 350px;
+}
+
+/* Lado derecho */
+.login-box {
+  width: 350px;
+  padding: 30px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+  }
+
+  .left-section {
+    border-right: none;
+  }
+
+  .left-section .logo {
+    width: 260px;
+  }
+}

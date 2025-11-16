@@ -1,0 +1,20 @@
+<div class="dashboard-container">
+  <div class="sidebar">
+    <img src="LogoSPA.png" class="sidebar-logo" alt="Logo" />
+    <div class="menu">
+      <a routerLink="/citas2" routerLinkActive="active" class="menu-item">Inicio</a>
+      <a routerLink="/reservar-cita" routerLinkActive="active" class="menu-item">Reservar Cita</a>
+      <a (click)="irLogin()" class="menu-item">Salir</a>
+    </div>
+    <footer class="footer">
+  <p>Desarrollado por Grupo 5 Base de datos 2</p>
+</footer>
+  </div>
+
+
+  <div class="right-section">
+    <router-outlet></router-outlet>
+  </div>
+
+
+</div>

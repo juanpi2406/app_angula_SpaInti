@@ -1,0 +1,129 @@
+<div class="content">
+
+  <!-- Encabezado -->
+  <div class="header">
+    <h2>Reservar cita por servicio</h2>
+  </div>
+
+  <!-- Selección de servicio -->
+  <div class="section">
+    <h3>Selecciona un servicio</h3>
+
+    <div class="cards-servicios">
+      <div
+        class="card-servicio"
+        *ngFor="let s of servicios"
+        (click)="seleccionarServicio(s)"
+        [class.seleccionado]="servicioSeleccionado?.servicio_id === s.servicio_id"
+      >
+        <p class="titulo">{{ s.nombre }}</p>
+        <p class="precio">{{ s.precio ? 'S/ ' + s.precio : '' }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Selección de fecha -->
+  <div class="section" *ngIf="servicioSeleccionado">
+    <h3>Selecciona una fecha</h3>
+    <input
+      class="input-select"
+      type="date"
+      [(ngModel)]="fechaSeleccionada"
+      (change)="buscarHorariosPorServicio()"
+    />
+  </div>
+
+  <!-- Horarios por empleado -->
+  <div class="section" *ngIf="servicioSeleccionado && fechaSeleccionada">
+
+    <h3>Horarios disponibles</h3>
+
+    <div *ngIf="cargandoHorarios">Cargando horarios...</div>
+
+    <!-- VALIDACIÓN: NO HAY HORARIOS -->
+<!-- VALIDACIÓN: NO HAY HORARIOS -->
+<p *ngIf="noHayHorarios" class="sin-horarios">
+  No hay horarios disponibles para este servicio en esta fecha.
+</p>
+
+
+
+    <!-- LISTA DE EMPLEADOS -->
+    <div class="empleado-bloque" *ngFor="let emp of empleadosDelServicio">
+
+      <h4 class="empleado-nombre">
+        {{ emp.nombres }} {{ emp.apellidos }}
+      </h4>
+
+      <!-- Horarios -->
+      <div class="cards">
+        <div
+          class="card horario-card"
+          *ngFor="let h of emp.horarios"
+          [class.seleccionado]="horaSeleccionada?.hora === h.hora && horaSeleccionada?.empleado_id === emp.empleado_id"
+          (click)="seleccionarHora(h, emp.empleado_id)"
+        >
+          <div class="card-info">
+            <p class="titulo">{{ h.hora }}</p>
+            <p class="precio">Disponible</p>
+          </div>
+        </div>
+      </div>
+
+      <p *ngIf="emp.horarios.length === 0" class="empleado-sin-horarios">
+        Este especialista no tiene horarios disponibles.
+      </p>
+
+    </div>
+
+  </div>
+
+
+<!-- Modal de confirmación -->
+<div class="modal-overlay" *ngIf="mostrarResumen">
+  <div class="modal-content">
+    <h3>¿Confirmar esta reserva?</h3>
+    <div class="resumen-detalle">
+      <p><strong>Servicio:</strong> {{ servicioSeleccionado?.nombre }}</p>
+      <p><strong>Fecha:</strong> {{ fechaSeleccionada }}</p>
+      <p><strong>Hora:</strong> {{ horaSeleccionada?.hora }}</p>
+      <p><strong>Especialista:</strong>
+        {{ especialistaSeleccionado?.nombres }} {{ especialistaSeleccionado?.apellidos }}
+      </p>
+    </div>
+
+    <div class="modal-buttons">
+      <button class="btn-confirmar" (click)="enviarReserva()">Confirmar</button>
+      <button class="btn-cancelar" (click)="mostrarResumen = false">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Resumen de la cita -->
+<div class="resumen-confirmacion" *ngIf="mostrarResumen">
+  <h3>¿Confirmar esta reserva?</h3>
+  <div class="resumen-detalle">
+    <p><strong>Servicio:</strong> {{ servicioSeleccionado?.nombre }}</p>
+    <p><strong>Fecha:</strong> {{ fechaSeleccionada }}</p>
+    <p><strong>Hora:</strong> {{ horaSeleccionada?.hora }}</p>
+    <p><strong>Especialista:</strong>
+      {{ especialistaSeleccionado?.nombres }} {{ especialistaSeleccionado?.apellidos }}
+    </p>
+  </div>
+
+  <div class="botones-resumen">
+    <button class="btn-confirmar" (click)="enviarReserva()">Confirmar</button>
+    <button class="btn-cancelar" (click)="mostrarResumen = false">Cancelar</button>
+  </div>
+</div>
+
+
+
+  <!-- Botones de acción -->
+  <div class="botones-flotantes" *ngIf="horaSeleccionada">
+    <button class="btn-confirmar" (click)="confirmarReserva()">Confirmar Reserva</button>
+    <button class="btn-cancelar" (click)="horaSeleccionada = ''">Cancelar</button>
+  </div>
+
+</div>

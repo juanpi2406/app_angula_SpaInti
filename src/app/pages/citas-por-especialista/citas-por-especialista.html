@@ -1,0 +1,82 @@
+<div class="content">
+  <!-- Encabezado -->
+  <div class="header">
+    <h2>Crear Cita por especialista</h2>
+  </div>
+
+  <!-- Selección de especialista -->
+  <div class="section">
+    <h3>Selecciona un especialista</h3>
+    <select class="input-select"
+            [(ngModel)]="empleadoSeleccionado"
+            (change)="cargarHorarios()">
+      <option value="">-- Selecciona un especialista --</option>
+      <option *ngFor="let e of empleados" [value]="e.empleado_id">
+        {{ e.nombres }} {{ e.apellidos }}
+      </option>
+    </select>
+  </div>
+
+  <!-- Selección de fecha -->
+  <div class="section">
+    <h3>Selecciona una fecha</h3>
+    <input class="input-select"
+           type="date"
+           [(ngModel)]="fechaSeleccionada"
+           (change)="cargarHorarios()" />
+  </div>
+
+  <!-- Horarios disponibles -->
+  <div class="section">
+    <h3>Horarios disponibles</h3>
+
+    <div *ngIf="cargandoHorarios">Cargando horarios...</div>
+
+ <div class="cards" *ngIf="!cargandoHorarios">
+  <div
+    class="card horario-card"
+    *ngFor="let h of horarios"
+    [class.seleccionado]="horaSeleccionada === h.hora"
+    [class.ocupado]="!h.disponible"
+    (click)="h.disponible ? seleccionarHora(h.hora) : null"
+  >
+    <div class="card-info">
+      <p class="titulo">{{ h.hora }}</p>
+      <p class="precio">
+        {{ h.disponible ? 'Disponible' : 'Ocupado' }}
+      </p>
+    </div>
+  </div>
+</div>
+
+
+    <p *ngIf="horarios.length === 0 && !cargandoHorarios">
+      No hay horarios disponibles
+    </p>
+
+
+<!-- Modal de confirmación -->
+<div class="modal-overlay" *ngIf="mostrarResumen">
+  <div class="modal-content">
+    <h3>¿Confirmar esta cita?</h3>
+    <div class="resumen-detalle">
+      <p><strong>Especialista:</strong> {{ especialistaSeleccionado?.nombres }} {{ especialistaSeleccionado?.apellidos }}</p>
+      <p><strong>Fecha:</strong> {{ fechaSeleccionada }}</p>
+      <p><strong>Hora:</strong> {{ horaSeleccionada }}</p>
+    </div>
+
+    <div class="modal-buttons">
+      <button class="btn-confirmar" (click)="enviarReserva()">Confirmar</button>
+      <button class="btn-cancelar" (click)="mostrarResumen = false">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+
+    <!-- Botones de acción -->
+    <div class="botones-flotantes" *ngIf="horaSeleccionada">
+      <button (click)="confirmarReserva()">Confirmar Reserva</button>
+      <button (click)="cancelarSeleccion()">Cancelar</button>
+    </div>
+  </div>
+</div>
