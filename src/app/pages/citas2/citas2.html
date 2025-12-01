@@ -43,6 +43,8 @@
         <p><b>Fecha:</b> {{ ultimaCita.fecha_reserva | date: 'dd/MM/yyyy' }}</p>
         <p><b>Hora:</b> {{ ultimaCita.hora_reserva }}</p>
         <p><b>Notas:</b> {{ ultimaCita.notas || 'Sin notas' }}</p>
+
+
       </div>
       <ng-template #sinCita>
         <p class="sin-cita">Aún no tienes una cita registrada 🕓</p>

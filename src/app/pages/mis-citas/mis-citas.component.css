@@ -1,0 +1,144 @@
+/* --- Tipografías y textos generales --- */
+.titulo-sin-citas {
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+  color: #222222; /* negro intenso */
+  text-align: center;
+}
+
+.subtexto-sin-citas {
+  font-size: 1rem;
+  color: #555555; /* gris oscuro */
+  margin-bottom: 20px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* --- Contenedor de citas --- */
+.citas-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* --- Tarjetas --- */
+.cita-card {
+  background: #ffffff;           /* fondo blanco */
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;    /* gris claro */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: all 0.25s ease;
+}
+
+.cita-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+}
+
+.servicio-nombre {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #222222;
+  margin-bottom: 10px;
+}
+
+/* --- Metadatos --- */
+.cita-metadatos { margin-top: 12px; }
+
+.cita-detalle {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+  color: #555555;
+}
+
+.detalle-titulo { font-weight: 600; margin: 0 5px 0 6px; }
+.detalle-valor { font-weight: 500; color: #222222; }
+
+.fecha-badge {
+  padding: 3px 8px;
+  background: #cce5ff; /* azul */
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.hora-badge {
+  padding: 3px 8px;
+  background: #b3d7ff; /* azul claro */
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+/* --- Estados --- */
+.estado-tag {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.estado-tag.confirmada { background: #28a745; color: #ffffff; }
+.estado-tag.pendiente  { background: #ffc107; color: #222222; }
+.estado-tag.cancelada  { background: #dc3545; color: #ffffff; }
+
+/* --- Botones --- */
+.btn-anular {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: #dc3545;
+  color: #ffffff;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+  padding: 6px 12px;
+  margin: 10px;
+}
+
+.btn-anular:hover {
+  background: #b52b3a;
+}
+
+.btn-reservar {
+  margin-top: 10px;
+  background: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-reservar:hover {
+  background: #0056b3;
+}
+
+/* --- Loader --- */
+.loader-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #555555;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 4px solid #ddd;
+  border-top-color: #007bff;
+  border-radius: 50%;
+  animation: girar 1s infinite linear;
+  margin-bottom: 10px;
+}
+
+@keyframes girar { to { transform: rotate(360deg); } }
+
+/* --- Separadores --- */
+.ml-fix { margin-left: 8px; }

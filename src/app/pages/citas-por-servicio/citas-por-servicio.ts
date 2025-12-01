@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SupabaseService } from '../../services/supabase.service';
+import { Router } from '@angular/router'; // Importar Router
 
 @Component({
   selector: 'app-citas-por-servicio',
@@ -26,7 +27,8 @@ export class CitasPorServicioComponent implements OnInit {
 
   constructor(
     private supabase: SupabaseService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private router: Router
   ) {}
 
   async ngOnInit() {
@@ -52,7 +54,7 @@ export class CitasPorServicioComponent implements OnInit {
     this.empleadoSeleccionado = 0;
     this.empleadosDelServicio = [];
 
-    // 1️⃣ Obtener empleados asignados al servicio
+    // Obtener empleados asignados al servicio
     const { data, error } = await this.supabase.client
       .from('servicios_empleados')
       .select('empleado_id')
@@ -71,7 +73,7 @@ export class CitasPorServicioComponent implements OnInit {
       return;
     }
 
-    // 2️⃣ Traer datos completos de esos empleados
+    // Traer datos completos de esos empleados
     const { data: empleados } = await this.supabase.client
       .from('empleados')
       .select('*')
@@ -235,12 +237,15 @@ async enviarReserva() {
     }
 
     // 6. Finalizar
-    alert("✅ Cita reservada con éxito");
+    alert("Cita reservada con éxito");
+
 
     this.horaSeleccionada = null;
     this.empleadoSeleccionado = 0;
     this.mostrarResumen = false;
     await this.buscarHorariosPorServicio();
+    // ¡Redireccionamiento al nuevo componente de lista!
+    this.router.navigate(['/mis-citas']);
 
   } catch (err: any) {
     console.error('Excepción en enviarReserva:', err);

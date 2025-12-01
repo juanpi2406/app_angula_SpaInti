@@ -1,0 +1,75 @@
+<div class="citas-container">
+  <div class="header">
+    <h1>Mis Próximas Citas</h1>
+  </div>
+
+  <!-- Indicador de Carga -->
+  <div *ngIf="cargando" class="loader-overlay">
+    <div class="spinner"></div>
+    <span>Buscando tus próximas citas...</span>
+  </div>
+
+  <!-- Mensaje si no hay citas -->
+  <div *ngIf="!cargando && citas.length === 0" class="no-citas">
+    <p class="titulo-sin-citas">¡Todo listo!</p>
+    <p class="subtexto-sin-citas">
+      Parece que no tienes citas activas. Es un buen momento para agendar tu próximo servicio.
+    </p>
+    <button (click)="irAReservar()" class="btn-reservar">
+      Reservar Cita Ahora
+    </button>
+  </div>
+
+  <!-- Lista de Citas -->
+  <div class="citas-grid" *ngIf="!cargando && citas.length > 0">
+    <div *ngFor="let cita of citas"
+         class="cita-card"
+         [ngClass]="{'estado-confirmada': cita.estado === 'confirmada',
+                     'estado-pendiente': cita.estado === 'pendiente',
+                     'estado-cancelada': cita.estado === 'cancelada'}">
+
+      <!-- Título del Servicio -->
+      <h2 class="servicio-nombre">{{ cita.servicio_id.nombre }}</h2>
+
+      <!-- Metadatos -->
+      <div class="cita-metadatos">
+
+        <div class="cita-detalle">
+          <svg>…</svg>
+          <span class="detalle-titulo">Fecha:</span>
+          <span class="fecha-badge">{{ cita.fecha_reserva | date: 'fullDate' }}</span>
+        </div>
+
+        <div class="cita-detalle">
+          <svg>…</svg>
+          <span class="detalle-titulo">Hora:</span>
+          <span class="hora-badge">{{ cita.hora_reserva.substring(0, 5) }}</span>
+        </div>
+
+        <div class="cita-detalle">
+          <svg>…</svg>
+          <span class="detalle-titulo">Especialista:</span>
+          <span class="detalle-valor ml-fix">{{ cita.empleado_id.nombres }} {{ cita.empleado_id.apellidos }}</span>
+        </div>
+
+      </div>
+
+      <!-- Estado y Acción -->
+      <div class="cita-acciones">
+        <span class="estado-tag"
+              [ngClass]="{'confirmada': cita.estado === 'confirmada',
+                          'pendiente': cita.estado === 'pendiente',
+                          'cancelada': cita.estado === 'cancelada'}">
+          {{ cita.estado | uppercase }}
+        </span>
+
+        <button *ngIf="cita.estado === 'pendiente' || cita.estado === 'confirmada'"
+                (click)="anularCita(cita)"
+                class="btn-anular">
+          <svg>…</svg>
+          Anular
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

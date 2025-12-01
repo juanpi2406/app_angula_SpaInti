@@ -118,20 +118,25 @@ export class Citas2 implements OnInit {
       // 2. BUSCAR LA ÚLTIMA CITA Y TRAER LA RELACIÓN (JOIN)
       // Usamos 'servicio_id(nombre)' para traer el nombre del servicio de la tabla 'servicios'
 
+      // 2. BUSCAR LA ÚLTIMA CITA Y TRAER LA RELACIÓN (JOIN)
+      // Agregamos un filtro: solo citas cuyo estado NO es 'cancelada'
       const { data, error } = await this.supabaseService.client
         .from('reservas')
-        .select('*, servicio_id(nombre)') // <-- CAMBIO CLAVE:  el JOIN
+        .select('*, servicio_id(nombre)')
         .eq('cliente_id', clienteId)
+        // AÑADE ESTA LÍNEA CLAVE: Filtra para que el estado NO sea 'cancelada'
+        .neq('estado', 'cancelada')
         .order('fecha_reserva', { ascending: false })
         .order('hora_reserva', { ascending: false })
         .limit(1)
         .maybeSingle();
 
+      // ... (el resto de la lógica de manejo de errores y asignación es correcta)
       if (error) {
         console.error('Error al obtener última cita:', error);
         this.ultimaCita = null;
       } else {
-        // La propiedad 'servicio_id' ahora es un objeto que contiene el nombre.
+        // Si no se encuentra ninguna cita ACTIVA, data será null
         this.ultimaCita = data ? (data as UltimaCita) : null;
         console.log('Última cita cargada (OBJETO COMPLETO CON JOIN):', this.ultimaCita);
       }
@@ -141,8 +146,7 @@ export class Citas2 implements OnInit {
       this.ultimaCita = null;
     }
     this.cdr.detectChanges();
-  }
-
+}
 
   // Crear Cita - **CORRECCIÓN: Debe usar el valor numérico (ID) del servicio**
   async crearCita2() {
@@ -257,7 +261,49 @@ async cargarUsuario() {
       irCitasPorEspecialista() {
     this.router.navigate(['/citas-por-especialista']);
   }
+
+async anularCita(cita: any) {
+  if (!confirm("¿Seguro que deseas ANULAR esta cita?")) return;
+
+  // 1) Actualizar estado de la reserva
+  const { error: reservaError } = await this.supabaseService.client
+    .from('reservas')
+    .update({ estado: 'cancelada' })
+    .eq('reserva_id', cita.reserva_id);
+
+  if (reservaError) {
+    alert("❌ Error al anular la cita.");
+    return;
+  }
+
+  // 2) Volver a habilitar el horario
+  await this.supabaseService.client
+    .from('horarios_empleados')
+    .update({ disponible: true })
+    .eq('empleado_id', cita.empleado_id)
+    .eq('fecha', cita.fecha_reserva)
+    .eq('hora', cita.hora_reserva);
+
+  // 3) Registrar en el historial
+  await this.supabaseService.client
+    .from('historial_reserva')
+    .insert({
+      reserva_id: cita.reserva_id,
+      estado: 'cancelada',
+      fecha_estado: new Date().toISOString()
+    });
+
+  alert("✔ Cita anulada correctamente.");
+
+  // 4) Refrescar datos en pantalla
+  this.cargarUltimaCita();
 }
+
+
+
+}
+
+
 
 
 

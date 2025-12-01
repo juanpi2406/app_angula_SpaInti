@@ -16,6 +16,7 @@ export class DashboardLayoutComponent {
   menuOpciones = [
     { label: 'Inicio', ruta: '/citas' },
     { label: 'Reservar cita', ruta: '/reservar-cita' },
+    { label: 'Mis citas', ruta: '/mis-citas' },
     { label: 'Salir', accion: () => this.irLogin() }
   ];
 

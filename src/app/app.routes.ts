@@ -7,6 +7,7 @@ import { CitasOpciones } from './pages/citas-opciones/citas-opciones';
 import { CitasPorServicioComponent } from './pages/citas-por-servicio/citas-por-servicio';
 import { CitasPorEspecialistaComponent } from './pages/citas-por-especialista/citas-por-especialista';
 import { DashboardLayoutComponent } from './pages/layaot/dashboard-layout.component';
+import { MisCitasComponent } from './pages/mis-citas/mis-citas.component'; // Ajusta la ruta de importación
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -14,6 +15,7 @@ export const routes: Routes = [
   // Rutas públicas
   { path: 'login', component: Login },
   { path: 'register', component: RegisterComponent },
+
 
   // Rutas protegidas bajo layout
   {
@@ -25,6 +27,7 @@ export const routes: Routes = [
       { path: 'reservar-cita', component: CitasOpciones },
       { path: 'citas-por-servicio', component: CitasPorServicioComponent },
       { path: 'citas-por-especialista', component: CitasPorEspecialistaComponent },
+       { path: 'mis-citas', component: MisCitasComponent },
 
     ]
   }
